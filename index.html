@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Krteček Clicker</title>
+		<link rel="shortcut icon" href="krtecek.png" type="image/png">
+		<style>
+			.container {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+			}
+
+			.container:active {
+				transform: translate(-50%, -50%) scale(1.2);
+			}
+
+			body {
+				background-color: #333333;
+			}
+		
+			.click-counter {
+				text-align: center;
+				color: #ffffff;
+				font-family: sans-serif;
+				font-weight: bold;
+				font-size: 32px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="container" id="clickable">
+			<img src="krtecek.png" alt="Krteček" />
+			<p id="click-count" class="click-counter">0</p>
+		</div>
+
+		<script>
+			const clickCount = document.getElementById( "click-count" );
+
+			let clicks = localStorage.clicks || 0;
+
+			function updateClicks( ) {
+				clickCount.innerText = clicks;
+			}
+
+			updateClicks( );
+
+			function addClick( ) {
+				clicks++;
+				localStorage.clicks = clicks;
+
+				updateClicks( );
+			}
+
+			document.getElementById( "clickable" ).addEventListener( "click", addClick );
+
+		</script>
+	</body>
+
+</html>
